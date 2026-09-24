@@ -1,347 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Ghana Salary Calculator 2026 — PAYE, SSNIT, Tier 1 and Tier 2 pension breakdown." />
-<title>Ghana Salary Calculator — 2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Africa Salary Comparator — compare take-home pay, tax and statutory deductions across African countries in local currency and USD.">
+<title>Africa Salary Comparator — 2026</title>
 <style>
 :root{
-  --bg:#f5f7fb;
-  --card:#ffffff;
-  --panel:#f8fafc;
-  --text:#172033;
-  --muted:#6b7280;
-  --border:#e3e7ee;
-  --accent:#5b6ee1;
-  --accent-bg:#eef1ff;
-  --green:#16a34a;
-  --blue:#2563eb;
-  --shadow:0 12px 32px rgba(15,23,42,.08);
+  --bg:#f4f7fb;--card:#fff;--panel:#f8fafc;--text:#172033;--muted:#667085;--border:#e4e7ec;
+  --accent:#5b6ee1;--accent-soft:#eef1ff;--green:#149447;--blue:#2563eb;--amber:#b7791f;
+  --shadow:0 16px 42px rgba(15,23,42,.08)
 }
 *{box-sizing:border-box}
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at top right, rgba(91,110,225,.10), transparent 24%),
+    radial-gradient(circle at top left, rgba(20,148,71,.08), transparent 20%),
+    linear-gradient(180deg,#f5f8ff 0%, #f4f7fb 100%);
   color:var(--text);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  font-variant-numeric:tabular-nums;
+  font-variant-numeric:tabular-nums
 }
-button,input{font:inherit}
-.container{max-width:620px;margin:0 auto;padding:24px 16px 56px}
-.update{
-  padding:10px 14px;border-radius:12px;background:var(--accent-bg);
-  color:var(--text);font-size:12px;font-weight:750;text-align:center;margin-bottom:12px
+button,input,select{font:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 60px}
+.banner{
+  padding:12px 16px;border-radius:14px;margin-bottom:14px;text-align:center;font-size:12px;font-weight:850;
+  background:linear-gradient(90deg, rgba(91,110,225,.18), rgba(37,99,235,.14), rgba(20,148,71,.14), rgba(183,121,31,.13));
+  color:#203056;border:1px solid rgba(91,110,225,.14)
 }
-.card{border:1px solid var(--border);border-radius:20px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
-.header{padding:22px 20px 10px;text-align:center}
-.flag{font-size:26px;line-height:1}
-h1{font-size:28px;line-height:1.15;font-weight:850;letter-spacing:-.03em;margin:8px 0 0}
-.intro{font-size:13px;line-height:1.55;color:var(--muted);margin:8px auto 0;max-width:470px}
-.form{padding:14px 20px 20px}
-label{display:block;font-size:13px;font-weight:750;margin-bottom:7px}
-.inputbox{display:flex;align-items:center;border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden;transition:.15s ease}
-.inputbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,110,225,.14)}
-.prefix{padding-left:13px;color:var(--muted);font-size:14px;font-weight:800;white-space:nowrap}
-input{
-  width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--text);
-  font-size:22px;font-weight:800;text-align:right;padding:12px 14px 12px 7px
+.card{background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.hero{
+  padding:26px 22px 18px;text-align:center;
+  background:
+    linear-gradient(135deg, rgba(91,110,225,.10), rgba(255,255,255,0) 35%),
+    linear-gradient(225deg, rgba(20,148,71,.10), rgba(255,255,255,0) 35%),
+    linear-gradient(180deg,#ffffff 0%, #fbfcff 100%);
 }
-.help{font-size:11px;color:var(--muted);line-height:1.45;margin-top:7px}
-.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
-.quick button,.share,.toggle,.clear{
-  border-radius:10px;cursor:pointer;transition:.15s ease;
+.mark{
+  display:inline-grid;place-items:center;width:48px;height:48px;border-radius:16px;
+  background:linear-gradient(135deg,#5b6ee1,#2563eb 45%,#149447 80%,#b7791f);
+  color:#fff;font-weight:900;letter-spacing:.02em;box-shadow:0 10px 24px rgba(91,110,225,.25)
 }
-.quick button{
-  border:1px solid var(--border);background:var(--panel);color:var(--text);
-  padding:7px 10px;font-size:11px;font-weight:750;min-height:34px
+h1{font-size:31px;line-height:1.08;letter-spacing:-.04em;margin:10px 0 0}
+.lead{max-width:680px;margin:8px auto 0;color:var(--muted);font-size:13px;line-height:1.55}
+.tabs{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--panel)}
+.tab{flex:1;border:0;background:transparent;padding:13px 14px;font-size:12px;font-weight:850;color:var(--muted);cursor:pointer;transition:.15s ease}
+.tab.active{background:#fff;color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.tab:hover{background:#fff}
+.panel{display:none}.panel.active{display:block}
+.form{padding:20px 22px;display:grid;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-size:12px;font-weight:850;margin-bottom:7px}
+.control,.moneybox{width:100%;min-height:50px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.control{padding:10px 12px;color:var(--text)}
+.moneybox{display:flex;align-items:center;overflow:hidden}
+.prefix{padding-left:12px;font-size:13px;font-weight:850;color:var(--muted);white-space:nowrap}
+.moneybox input{width:100%;min-width:0;border:0;outline:0;background:transparent;text-align:right;padding:11px 13px 11px 7px;font-size:19px;font-weight:850;color:var(--text)}
+.control:focus,.moneybox:focus-within{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,110,225,.14)}
+.hint{font-size:10.5px;color:var(--muted);line-height:1.45;margin-top:6px}
+.note{padding:12px 13px;border-radius:13px;background:linear-gradient(180deg,#fbfcff,#f6f8fd);font-size:10.6px;color:var(--muted);line-height:1.5;border:1px solid var(--border)}
+.results{padding:20px 22px;border-top:1px solid var(--border)}
+.net{
+  text-align:center;border:1px solid var(--border);border-radius:18px;padding:18px 14px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(91,110,225,.09), transparent 18%),
+    radial-gradient(circle at 85% 25%, rgba(20,148,71,.07), transparent 16%),
+    linear-gradient(180deg,#ffffff,#fbfcff)
 }
-.quick button:hover,.toggle:hover,.share:hover{transform:translateY(-1px)}
-.results{border-top:1px solid var(--border);padding:20px}
-.net{text-align:center;margin-bottom:20px}
-.net-label{font-size:12px;color:var(--muted);font-weight:700}
-.net-value{font-size:clamp(34px,8vw,48px);font-weight:900;letter-spacing:-.045em;margin-top:4px;overflow-wrap:anywhere}
-.net-sub{font-size:11px;color:var(--muted);margin-top:5px}
-.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.metric{text-align:center;border:1px solid var(--border);border-radius:13px;padding:12px;min-width:0;background:var(--panel)}
-.metric-label{font-size:11px;color:var(--muted);line-height:1.3}
-.metric-value{font-size:17px;font-weight:850;margin-top:4px;overflow-wrap:anywhere}
-.chargeable{margin-top:10px;display:flex;justify-content:space-between;gap:14px;padding:11px 13px;border-radius:11px;background:var(--panel);font-size:11px;color:var(--muted)}
-.chargeable strong{color:var(--text);font-size:12px}
+.net .label{font-size:11px;color:var(--muted);font-weight:750}
+.net .value{font-size:clamp(34px,6vw,48px);font-weight:900;letter-spacing:-.045em;margin-top:4px}
+.net .sub{font-size:11px;color:var(--muted);margin-top:5px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.metric{
+  border:1px solid var(--border);border-radius:15px;background:linear-gradient(180deg,#ffffff,#fbfcff);
+  padding:13px;text-align:center;min-width:0;position:relative;overflow:hidden
+}
+.metric:before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,#5b6ee1,#2563eb,#149447,#b7791f)}
+.metric .label{font-size:10px;color:var(--muted);line-height:1.3}.metric .value{font-size:16px;font-weight:850;margin-top:4px;overflow-wrap:anywhere}
 .actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
-.toggle,.share{
-  border:1px solid var(--accent);background:#fff;color:var(--accent);
-  min-height:42px;padding:9px 15px;font-size:12px;font-weight:800
-}
-.share{background:var(--accent);color:#fff}
-.clear-row{text-align:center;margin-top:9px}
-.clear{border:0;background:transparent;color:var(--muted);font-size:11px;text-decoration:underline;padding:6px}
-.details{display:none;border-top:1px solid var(--border)}
-.details.open{display:block}
-.section{padding:17px 20px;border-bottom:1px solid var(--border)}
-.section:last-child{border-bottom:0}
+.btn{min-height:42px;border-radius:12px;padding:9px 15px;font-size:12px;font-weight:850;cursor:pointer;transition:.15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{border:1px solid var(--accent);background:linear-gradient(135deg,#5b6ee1,#6d7ff0);color:#fff}
+.btn.secondary{border:1px solid var(--accent);background:#fff;color:var(--accent)}
+.details{display:none;border-top:1px solid var(--border)}.details.open{display:block}
+.section{padding:18px 22px;border-bottom:1px solid var(--border)}.section:last-child{border-bottom:0}
 .section-title{font-size:13px;font-weight:850;margin-bottom:10px}
-.pensions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.pension{border-radius:12px;padding:12px;border:1px solid var(--border);min-width:0}
-.pension .name{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.05em}
-.pension .amount{font-size:17px;font-weight:900;margin-top:3px;overflow-wrap:anywhere}
-.pension .desc{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.35}
-.t1{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.07)}
-.t1 .name,.t1 .amount{color:var(--green)}
-.t2{border-color:rgba(37,99,235,.35);background:rgba(37,99,235,.07)}
-.t2 .name,.t2 .amount{color:var(--blue)}
-.rows{display:grid;gap:0}
-.row{display:grid;grid-template-columns:minmax(0,1.7fr) .6fr 1fr 1fr;gap:7px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:10px}
-.row:last-child{border-bottom:0}
-.row.headrow{font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-size:9px}
-.row.active{background:#f6f7fb;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:7px}
-.right{text-align:right}
-.rate{font-weight:850}
-.deductions{display:grid;gap:8px}
-.ded-row{display:flex;justify-content:space-between;gap:12px;font-size:11px}
-.ded-row span{color:var(--muted)}
-.ded-row strong{font-weight:850}
-.ded-row.total{padding-top:8px;border-top:1px solid var(--border);font-size:12px}
-.notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--panel);font-size:10px;line-height:1.5;color:var(--muted)}
-.notice strong{color:var(--text)}
-.share-status{text-align:center;font-size:11px;color:var(--muted);min-height:16px;margin-top:6px}
-footer{text-align:center;color:var(--muted);font-size:10px;line-height:1.5;margin-top:14px}
-.usage{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}.usage a{display:inline-flex;align-items:center;text-decoration:none}.usage img{height:20px;border:0}.usage span{font-size:10px;color:var(--muted)}
-@media(max-width:420px){
-  .summary,.pensions{grid-template-columns:1fr}
-  .row{grid-template-columns:minmax(0,1.35fr) .55fr .9fr .9fr;font-size:9px;gap:4px}
-  .header,.form,.results,.section{padding-left:15px;padding-right:15px}
+.ded{display:grid;gap:8px}.dedrow{display:flex;justify-content:space-between;gap:14px;font-size:11px}.dedrow span{color:var(--muted)}.dedrow strong{text-align:right}.dedrow.total{padding-top:8px;border-top:1px solid var(--border);font-size:12px}
+.breakdown{display:grid}.brow{display:grid;grid-template-columns:minmax(0,1.7fr) .62fr 1fr 1fr;gap:6px;padding:8px 0;border-bottom:1px solid var(--border);font-size:10px}
+.brow:last-child{border-bottom:0}.brow.headrow{font-size:9px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:850}.r{text-align:right}
+.compare-form{padding:20px 22px;border-bottom:1px solid var(--border)}
+.compare-toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}
+.fxbox{margin-top:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,#ffffff,#f9fbff);overflow:hidden}
+.fxhead{display:flex;justify-content:space-between;gap:10px;padding:12px 13px;border-bottom:1px solid var(--border);font-size:10.5px;color:var(--muted)}
+.fxgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.fxitem{padding:12px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px}.fxitem:last-child{border-right:0}
+.fxitem label{font-size:9px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:850;display:flex;align-items:center;gap:6px}
+.fxitem input{width:100%;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text);font-size:12px;font-weight:850;outline:0;padding:7px 8px}
+.compare-summary{padding:18px 22px 8px;display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.callout{
+  border:1px solid var(--border);border-radius:18px;padding:16px;
+  background:linear-gradient(135deg,rgba(91,110,225,.08),rgba(255,255,255,1) 36%,rgba(20,148,71,.05));
+}
+.callout .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:850}
+.callout .big{font-size:26px;font-weight:900;letter-spacing:-.035em;margin-top:5px}
+.callout .small{font-size:10.5px;color:var(--muted);line-height:1.45;margin-top:5px}
+.compare-table-wrap{padding:10px 22px 22px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:850px}
+th{padding:10px 11px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel)}
+td{padding:12px 11px;font-size:11px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:0}
+tr.best{background:linear-gradient(90deg, rgba(20,148,71,.08), rgba(255,255,255,0))}
+.country{font-weight:850}
+.rank{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--panel);font-weight:900}
+.barcell{min-width:180px}.bar{height:8px;border-radius:999px;background:#e8ecf2;overflow:hidden;margin-top:5px}.fill{height:100%;background:linear-gradient(90deg,#5b6ee1,#2563eb,#149447);border-radius:999px}
+.retention{font-weight:900}.usd{font-weight:850}.local{color:var(--muted)}
+.relief-grid{padding:0 22px 22px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.relief{border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,#ffffff,#fbfcff);padding:12px;min-width:0}
+.relief h3{font-size:12px;margin:0 0 7px;display:flex;align-items:center;gap:8px}
+.relief ul{margin:0;padding-left:17px;color:var(--muted);font-size:10px;line-height:1.52}
+.legend{padding:0 22px 20px;font-size:10.5px;color:var(--muted);line-height:1.5}
+.footer{text-align:center;font-size:10px;color:var(--muted);line-height:1.5;margin-top:14px}
+.flag{
+  width:20px;height:14px;object-fit:cover;border-radius:3px;border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 1px 2px rgba(0,0,0,.08);vertical-align:middle;background:#fff
+}
+.flag.big{width:28px;height:20px;border-radius:4px}
+.country-cell{display:flex;align-items:center;gap:8px}
+.selected-country{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(91,110,225,.08),rgba(20,148,71,.07));border:1px solid var(--border);
+  font-size:11px;font-weight:850;margin-bottom:10px
+}
+@media(max-width:800px){
+  .compare-summary{grid-template-columns:1fr}
+  .fxgrid{grid-template-columns:repeat(2,1fr)}
+  .fxitem{border-bottom:1px solid var(--border)}
+  .relief-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .grid2,.metrics,.compare-toolbar,.relief-grid{grid-template-columns:1fr}
+  .hero,.form,.results,.section,.compare-form,.compare-summary,.compare-table-wrap,.legend,.relief-grid{padding-left:15px;padding-right:15px}
+  .brow{grid-template-columns:minmax(0,1.35fr) .55fr .9fr .9fr;font-size:9px}
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="update">Updated for the September 2026 Ghana PAYE rates</div>
+<div class="wrap">
+  <div class="banner">Cross-country salary comparison with country flags, richer colour styling, and USD-based benchmarking</div>
   <div class="card">
-    <div class="header">
-      <div class="flag">🇬🇭</div>
-      <h1>Salary Calculator</h1>
-      <div class="intro">Estimate monthly take-home pay, PAYE income tax and statutory pension contributions.</div>
+    <div class="hero">
+      <div class="mark">AF</div>
+      <h1>Africa Salary Comparator</h1>
+      <div class="lead">Compare take-home pay across selected African payroll systems on the same USD gross salary, while still seeing each country in its own local currency and tax structure.</div>
     </div>
 
-    <div class="form">
-      <label for="salary26">Monthly basic income</label>
-      <div class="inputbox"><span class="prefix">GH₵</span><input id="salary26" type="text" inputmode="decimal" autocomplete="off" value="10,000"></div>
-      <div class="help">Commas are inserted automatically as you type.</div>
-      <div class="quick">
-        <button type="button" data-v="3000">3,000</button>
-        <button type="button" data-v="5000">5,000</button>
-        <button type="button" data-v="10000">10,000</button>
-        <button type="button" data-v="20000">20,000</button>
-        <button type="button" data-v="50000">50,000</button>
+    <div class="tabs">
+      <button class="tab active" data-tab="compare">Compare countries</button>
+      <button class="tab" data-tab="single">Single-country calculator</button>
+    </div>
+
+    <div id="compare" class="panel active">
+      <div class="compare-form">
+        <div class="compare-toolbar">
+          <div class="field">
+            <label for="usdGross">Equivalent monthly gross salary</label>
+            <div class="moneybox"><span class="prefix">$</span><input id="usdGross" type="text" inputmode="decimal" value="2,000"></div>
+            <div class="hint">The same USD-equivalent gross is converted into local currency in every country before that country's payroll rules are applied.</div>
+          </div>
+          <button id="shareCompare" class="btn primary" type="button">Share comparison</button>
+        </div>
+
+        <div class="fxbox">
+          <div class="fxhead">
+            <span>FX assumptions — local currency per USD</span>
+            <span>Editable • snapshot 24 Sep 2026</span>
+          </div>
+          <div class="fxgrid">
+            <div class="fxitem"><label><img class="flag" src="https://flagcdn.com/w40/gh.png" alt="Ghana flag">Ghana • GHS</label><input data-fx="gh" value="11.5904"></div>
+            <div class="fxitem"><label><img class="flag" src="https://flagcdn.com/w40/ng.png" alt="Nigeria flag">Nigeria • NGN</label><input data-fx="ng" value="1325.86"></div>
+            <div class="fxitem"><label><img class="flag" src="https://flagcdn.com/w40/ci.png" alt="Côte d’Ivoire flag">Côte d’Ivoire • XOF</label><input data-fx="ci" value="576.772"></div>
+            <div class="fxitem"><label><img class="flag" src="https://flagcdn.com/w40/za.png" alt="South Africa flag">South Africa • ZAR</label><input data-fx="za" value="16.4005"></div>
+            <div class="fxitem"><label><img class="flag" src="https://flagcdn.com/w40/ke.png" alt="Kenya flag">Kenya • KES</label><input data-fx="ke" value="129.389"></div>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:12px">
+          Baseline profile: resident employee, single / no dependants, under 65, and no optional relief claims beyond default statutory items already embedded in the country logic. This compares payroll deductions only — not cost of living, employer perks or public-service quality.
+        </div>
+      </div>
+
+      <div class="compare-summary">
+        <div class="callout">
+          <div class="eyebrow">Highest baseline take-home retention</div>
+          <div id="bestCountry" class="big">—</div>
+          <div id="bestDetail" class="small"></div>
+        </div>
+        <div class="callout">
+          <div class="eyebrow">How to read this</div>
+          <div class="small">“Retention” is net salary ÷ gross salary. “Other employee deductions” covers mandatory employee-side items such as social security, UIF, NHF, SHIF or housing levy depending on the country. Relief-toolkit cards below show where more claims are commonly available if the employee qualifies.</div>
+        </div>
+      </div>
+
+      <div class="compare-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Country</th><th>Local gross</th><th>PAYE / income tax</th><th>Other employee deductions</th><th>Net USD</th><th>Retention</th>
+            </tr>
+          </thead>
+          <tbody id="compareRows"></tbody>
+        </table>
+      </div>
+
+      <div class="legend"><strong>Relief / deduction toolkit:</strong> documented mechanisms that may reduce taxable income or tax if the employee qualifies. These are not all automatically applied in the baseline comparison.</div>
+
+      <div class="relief-grid">
+        <div class="relief"><h3><img class="flag big" src="https://flagcdn.com/w40/gh.png" alt="Ghana flag">Ghana</h3><ul><li>SSNIT deduction before PAYE</li><li>Mortgage interest on one residential premise</li><li>Provident fund up to statutory limit</li><li>Qualifying donations / worthwhile causes</li></ul></div>
+        <div class="relief"><h3><img class="flag big" src="https://flagcdn.com/w40/ng.png" alt="Nigeria flag">Nigeria</h3><ul><li>Pension contribution</li><li>NHF and NHIS contributions</li><li>Owner-occupied mortgage interest</li><li>Life insurance premium</li><li>Rent relief capped annually</li></ul></div>
+        <div class="relief"><h3><img class="flag big" src="https://flagcdn.com/w40/ci.png" alt="Côte d’Ivoire flag">Côte d’Ivoire</h3><ul><li>Family-charge reduction (RICF)</li><li>Employee CNPS retirement contribution</li><li>Family position can materially change net ITS</li></ul></div>
+        <div class="relief"><h3><img class="flag big" src="https://flagcdn.com/w40/za.png" alt="South Africa flag">South Africa</h3><ul><li>Primary and age-related rebates</li><li>Medical-scheme fee tax credits</li><li>Retirement-fund contribution deduction</li><li>Qualifying donations</li></ul></div>
+        <div class="relief"><h3><img class="flag big" src="https://flagcdn.com/w40/ke.png" alt="Kenya flag">Kenya</h3><ul><li>Personal relief</li><li>Insurance relief</li><li>Mortgage-interest deduction</li><li>Registered pension/provident deduction</li><li>SHIF and AHL deductible for PAYE</li></ul></div>
       </div>
     </div>
 
-    <div class="results" aria-live="polite">
-      <div class="net">
-        <div class="net-label">Net Income (take home)</div>
-        <div id="net26" class="net-value">GH₵0.00</div>
-        <div id="netNote26" class="net-sub"></div>
-      </div>
-      <div class="summary">
-        <div class="metric"><div class="metric-label">Income Tax (PAYE)</div><div id="tax26" class="metric-value">GH₵0.00</div></div>
-        <div class="metric"><div class="metric-label">Employee Pension</div><div id="ssnit26" class="metric-value">GH₵0.00</div></div>
-      </div>
-      <div class="chargeable"><span>PAYE chargeable income</span><strong id="charge26">GH₵0.00</strong></div>
-      <div class="actions">
-        <button id="toggle26" class="toggle" type="button" aria-expanded="false">Show full breakdown</button>
-        <button id="share26" class="share" type="button">Share calculator</button>
-      </div>
-      <div id="shareStatus26" class="share-status" aria-live="polite"></div>
-      <div class="clear-row"><button id="clear26" class="clear" type="button">Clear calculator</button></div>
-    </div>
+    <div id="single" class="panel">
+      <div class="form">
+        <div class="selected-country" id="selectedBadge">
+          <img id="selectedFlag" class="flag big" src="https://flagcdn.com/w40/gh.png" alt="Selected country flag">
+          <span id="selectedName">Ghana</span>
+        </div>
 
-    <div id="details26" class="details">
-      <div class="section">
-        <div class="section-title">Pension breakdown</div>
-        <div class="pensions">
-          <div class="pension t1"><div class="name">Tier 1 • T1</div><div id="t126" class="amount">GH₵0.00</div><div class="desc">13.5% of insurable earnings</div></div>
-          <div class="pension t2"><div class="name">Tier 2 • T2</div><div id="t226" class="amount">GH₵0.00</div><div class="desc">5% of insurable earnings</div></div>
+        <div class="grid2">
+          <div class="field">
+            <label for="country">Country</label>
+            <select id="country" class="control">
+              <option value="gh">Ghana</option>
+              <option value="ng">Nigeria</option>
+              <option value="ci">Côte d’Ivoire</option>
+              <option value="za">South Africa</option>
+              <option value="ke">Kenya</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="salary">Monthly gross/basic salary</label>
+            <div class="moneybox"><span id="prefix" class="prefix">GH₵</span><input id="salary" type="text" inputmode="decimal" value="10,000"></div>
+            <div class="hint">Local currency. Commas inserted automatically.</div>
+          </div>
         </div>
-        <div class="deductions" style="margin-top:12px">
-          <div class="ded-row"><span>Insurable earnings</span><strong id="insurable26">GH₵0.00</strong></div>
-          <div class="ded-row"><span>Employee contribution (5.5%)</span><strong id="employee26">GH₵0.00</strong></div>
-          <div class="ded-row"><span>Employer contribution (13%)</span><strong id="employer26">GH₵0.00</strong></div>
-          <div class="ded-row"><span>Total pension funding (18.5%)</span><strong id="pensionTotal26">GH₵0.00</strong></div>
-        </div>
+        <div id="extra" class="note"></div>
       </div>
 
-      <div class="section">
-        <div class="section-title">PAYE tax breakdown</div>
-        <div class="rows">
-          <div class="row headrow"><div>Band</div><div class="right">Rate</div><div class="right">Taxable</div><div class="right">Tax</div></div>
-          <div id="bands26"></div>
+      <div class="results">
+        <div class="net"><div class="label">Estimated take-home pay</div><div id="net" class="value">—</div><div id="netSub" class="sub"></div></div>
+        <div class="metrics">
+          <div class="metric"><div class="label">PAYE / income tax</div><div id="tax" class="value">—</div></div>
+          <div class="metric"><div class="label">Other employee deductions</div><div id="stat" class="value">—</div></div>
+          <div class="metric"><div class="label">Take-home in USD</div><div id="netUsd" class="value">—</div></div>
         </div>
+        <div class="actions"><button id="toggle" class="btn secondary" type="button">Show full breakdown</button></div>
       </div>
 
-      <div class="section">
-        <div class="section-title">Monthly deductions</div>
-        <div class="deductions">
-          <div class="ded-row"><span>Employee pension</span><strong id="dedSsnit26">GH₵0.00</strong></div>
-          <div class="ded-row"><span>PAYE</span><strong id="dedPaye26">GH₵0.00</strong></div>
-          <div class="ded-row total"><span>Total deductions</span><strong id="dedTotal26">GH₵0.00</strong></div>
+      <div id="details" class="details">
+        <div class="section"><div class="section-title">Monthly deductions</div><div id="deductions" class="ded"></div></div>
+        <div class="section">
+          <div class="section-title">Tax calculation</div>
+          <div class="breakdown"><div class="brow headrow"><div>Band / item</div><div class="r">Rate</div><div class="r">Base</div><div class="r">Tax</div></div><div id="taxRows"></div></div>
+          <div id="source" class="note" style="margin-top:10px"></div>
         </div>
-        <div id="cap26" class="notice"></div>
-        <div class="notice"><strong>PAYE threshold note:</strong> the September 2026 notice prints “Next GH₵30,334” at 30% but also states that the 35% band begins above GH₵50,000. This calculator uses GH₵50,000 as the operative upper threshold for the 30% band.</div>
       </div>
     </div>
   </div>
-  <footer>For estimation only. Always confirm payroll treatment against current GRA and SSNIT guidance.
-  <div class="usage">
-    <span>Anonymous usage counter:</span>
-    <a href="https://hits.sh/awgjnr.github.io/ghana_salary-calculator-2026/" target="_blank" rel="noopener noreferrer" aria-label="View usage statistics">
-      <img src="https://hits.sh/awgjnr.github.io/ghana_salary-calculator-2026.svg?label=uses&color=5b6ee1&labelColor=6b7280" alt="Usage counter">
-    </a>
-  </div>
-</footer>
+
+  <div class="footer">Indicative comparison only. FX rates and payroll rules change. Country-specific employment status, benefits, relief evidence and employer payroll policy can alter actual take-home pay.</div>
 </div>
 
 <script>
 (function(){
- const root=document.getElementById('ghanaTax2026') || document;
- const input=document.getElementById('salary26');
- const MIN=587.80, MAX=69000;
- const bands=[
-  {label:'First 588',start:0,end:588,rate:0},
-  {label:'Next 80',start:588,end:668,rate:.05},
-  {label:'Next 100',start:668,end:768,rate:.10},
-  {label:'Next 2,900',start:768,end:3668,rate:.175},
-  {label:'Next 16,000',start:3668,end:19668,rate:.25},
-  {label:'To 50,000',start:19668,end:50000,rate:.30},
-  {label:'Above 50,000',start:50000,end:Infinity,rate:.35}
- ];
- function parse(v){const n=Number(String(v).replace(/,/g,''));return Number.isFinite(n)&&n>0?n:0}
- function cash(n){return 'GH₵'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
- function shortCash(n){return n.toLocaleString('en-US',{maximumFractionDigits:2})}
- function rate(r){return (r*100).toFixed(r===.175?1:0)+'%'}
- function formatInput(){
-   let raw=input.value.replace(/,/g,'').replace(/[^0-9.]/g,'');
-   const first=raw.indexOf('.');
-   if(first>=0) raw=raw.slice(0,first+1)+raw.slice(first+1).replace(/\./g,'');
-   const parts=raw.split('.');
-   let integer=parts[0]||'0';
-   integer=integer.replace(/^0+(?=\d)/,'');
-   integer=integer.replace(/\B(?=(\d{3})+(?!\d))/g,',');
-   const decimal=parts.length>1?'.'+parts[1].slice(0,2):'';
-   input.value=integer+decimal;
- }
- function paye(income){
-   let total=0,html='';
+ const cfg={
+   gh:{name:'Ghana',currency:'GH₵',fx:11.5904,defaultSalary:10000,flag:'https://flagcdn.com/w40/gh.png',source:'GRA September 2026 individual PAYE bands; employee SSNIT deducted before PAYE.'},
+   ng:{name:'Nigeria',currency:'₦',fx:1325.86,defaultSalary:500000,flag:'https://flagcdn.com/w40/ng.png',source:'JRB Personal Income Tax Guidelines 2026. Baseline assumes employee pension 8% and NHF 2.5% on gross-equivalent contribution base.'},
+   ci:{name:'Côte d’Ivoire',currency:'XOF ',fx:576.772,defaultSalary:500000,flag:'https://flagcdn.com/w40/ci.png',source:'DGI ITS progressive schedule; RICF family reduction; employee CNPS retirement contribution 6.3%.'},
+   za:{name:'South Africa',currency:'R ',fx:16.4005,defaultSalary:30000,flag:'https://flagcdn.com/w40/za.png',source:'SARS 2026/27 individual tax bands and primary rebate; employee UIF 1% subject to ceiling.'},
+   ke:{name:'Kenya',currency:'KSh ',fx:129.389,defaultSalary:100000,flag:'https://flagcdn.com/w40/ke.png',source:'KRA PAYE bands and personal relief; NSSF Year 4 (2026), SHIF and Affordable Housing Levy.'}
+ };
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ function num(v){const x=Number(String(v).replace(/,/g,''));return Number.isFinite(x)&&x>0?x:0}
+ function comma(x){return Number(x||0).toLocaleString('en-US',{maximumFractionDigits:2})}
+ function money(x,c){return c+Number(x||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ function usd(x){return '$'+Number(x||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ function progressive(income,bands,c){
+   let total=0,rows='';
    for(const b of bands){
      const upper=Number.isFinite(b.end)?Math.min(income,b.end):income;
-     const amount=Math.max(0,upper-b.start);
-     const tax=amount*b.rate;
-     total+=tax;
-     const active=income>b.start&&(income<=b.end||!Number.isFinite(b.end));
-     html+='<div class="row'+(active?' active':'')+'"><div>'+b.label+'</div><div class="right rate">'+rate(b.rate)+'</div><div class="right">'+cash(amount).replace('GH₵','')+'</div><div class="right">'+cash(tax).replace('GH₵','')+'</div></div>';
+     const base=Math.max(0,upper-b.start), t=base*b.rate;
+     total+=t;
+     rows+='<div class="brow"><div>'+b.label+'</div><div class="r">'+(b.rate*100).toFixed(b.rate===.175?1:0)+'%</div><div class="r">'+money(base,c)+'</div><div class="r">'+money(t,c)+'</div></div>';
    }
-   return {total,html};
+   return {total,rows};
  }
- function calculate(){
-   const salary=parse(input.value);
-   const insurable=salary>0?Math.min(MAX,Math.max(MIN,salary)):0;
-   const employee=insurable*.055;
-   const employer=insurable*.13;
-   const t1=insurable*.135;
-   const t2=insurable*.05;
-   const pensionTotal=insurable*.185;
-   const chargeable=Math.max(0,salary-employee);
-   const p=paye(chargeable);
-   const deductions=employee+p.total;
-   const net=Math.max(0,salary-deductions);
-
-   document.getElementById('net26').textContent=cash(net);
-   document.getElementById('tax26').textContent=cash(p.total);
-   document.getElementById('ssnit26').textContent=cash(employee);
-   document.getElementById('charge26').textContent=cash(chargeable);
-   document.getElementById('t126').textContent=cash(t1);
-   document.getElementById('t226').textContent=cash(t2);
-   document.getElementById('insurable26').textContent=cash(insurable);
-   document.getElementById('employee26').textContent=cash(employee);
-   document.getElementById('employer26').textContent=cash(employer);
-   document.getElementById('pensionTotal26').textContent=cash(pensionTotal);
-   document.getElementById('dedSsnit26').textContent=cash(employee);
-   document.getElementById('dedPaye26').textContent=cash(p.total);
-   document.getElementById('dedTotal26').textContent=cash(deductions);
-   document.getElementById('bands26').innerHTML=p.html;
-   document.getElementById('netNote26').textContent=salary>0?cash(deductions)+' total employee deductions':'Enter a monthly salary above.';
-
-   let cap='';
-   if(salary>MAX) cap='<strong>SSNIT ceiling applied:</strong> pension contributions are capped at GH₵69,000 of monthly insurable earnings for 2026.';
-   else if(salary>0&&salary<MIN) cap='<strong>SSNIT minimum applied:</strong> pension contributions use the 2026 minimum insurable earnings of GH₵587.80.';
-   else if(salary>0) cap='<strong>SSNIT base:</strong> the entered salary falls within the 2026 insurable-earnings range.';
-   else cap='<strong>SSNIT:</strong> no contribution calculated until a salary is entered.';
-   document.getElementById('cap26').innerHTML=cap;
-
-   // Keep current salary in the URL so shared links can reopen with the same figure.
-   try{
-     const url=new URL(window.location.href);
-     if(salary>0) url.searchParams.set('salary', String(salary));
-     else url.searchParams.delete('salary');
-     history.replaceState(null,'',url);
-   }catch(e){}
+ function calcGH(g){
+   const c='GH₵',base=g>0?Math.min(69000,Math.max(587.8,g)):0,ss=base*.055,charge=Math.max(0,g-ss);
+   const p=progressive(charge,[{label:'First 588',start:0,end:588,rate:0},{label:'Next 80',start:588,end:668,rate:.05},{label:'Next 100',start:668,end:768,rate:.10},{label:'Next 2,900',start:768,end:3668,rate:.175},{label:'Next 16,000',start:3668,end:19668,rate:.25},{label:'To 50,000',start:19668,end:50000,rate:.30},{label:'Above 50,000',start:50000,end:Infinity,rate:.35}],c);
+   return {tax:p.total,other:ss,taxable:charge,net:g-ss-p.total,rows:p.rows,deds:[['Employee SSNIT',ss],['PAYE',p.total]]};
  }
- input.addEventListener('input',function(){formatInput();calculate()});
- input.addEventListener('blur',function(){const n=parse(input.value);input.value=n?shortCash(n):'0';calculate()});
- document.querySelectorAll('[data-v]').forEach(function(btn){
-   btn.addEventListener('click',function(){
-     const n=Number(btn.dataset.v);
-     input.value=shortCash(n);
-     calculate();
-     input.focus();
-   })
- });
- const toggle=document.getElementById('toggle26');
- const details=document.getElementById('details26');
- toggle.addEventListener('click',function(){
-   const open=details.classList.toggle('open');
-   toggle.setAttribute('aria-expanded',open?'true':'false');
-   toggle.textContent=open?'Hide full breakdown':'Show full breakdown';
- });
- document.getElementById('clear26').addEventListener('click',function(){
-   input.value='0';
-   calculate();
-   input.focus();
- });
- document.getElementById('share26').addEventListener('click',async function(){
-   const status=document.getElementById('shareStatus26');
-   const salary=parse(input.value);
-   let url=window.location.href;
-   try{
-     const u=new URL(window.location.href);
-     if(salary>0)u.searchParams.set('salary',String(salary));
-     url=u.toString();
-   }catch(e){}
-   const text='Ghana Salary Calculator 2026'+(salary>0?' — salary GH₵'+shortCash(salary):'');
-   if(navigator.share){
-     try{
-       await navigator.share({title:'Ghana Salary Calculator 2026',text:text,url:url});
-       status.textContent='Share sheet opened.';
-       return;
-     }catch(e){
-       if(e && e.name==='AbortError'){status.textContent='Share cancelled.';return;}
-     }
+ function calcNG(g){
+   const c='₦',pen=g*.08,nhf=g*.025,annualCharge=Math.max(0,(g-pen-nhf)*12);
+   const p=progressive(annualCharge,[{label:'First ₦800k',start:0,end:800000,rate:0},{label:'Next ₦2.2m',start:800000,end:3000000,rate:.15},{label:'Next ₦9m',start:3000000,end:12000000,rate:.18},{label:'Next ₦13m',start:12000000,end:25000000,rate:.21},{label:'Next ₦25m',start:25000000,end:50000000,rate:.23},{label:'Above ₦50m',start:50000000,end:Infinity,rate:.25}],c);
+   const mt=p.total/12;
+   return {tax:mt,other:pen+nhf,taxable:annualCharge/12,net:g-pen-nhf-mt,rows:p.rows,deds:[['Employee pension assumption',pen],['NHF assumption',nhf],['PAYE',mt]]};
+ }
+ function calcCI(g){
+   const c='XOF ',cnps=Math.min(g,3375000)*.063;
+   const p=progressive(g,[{label:'0–75,000',start:0,end:75000,rate:0},{label:'75,001–240,000',start:75000,end:240000,rate:.16},{label:'240,001–800,000',start:240000,end:800000,rate:.21},{label:'800,001–2.4m',start:800000,end:2400000,rate:.24},{label:'2.4m–8m',start:2400000,end:8000000,rate:.28},{label:'Above 8m',start:8000000,end:Infinity,rate:.32}],c);
+   return {tax:p.total,other:cnps,taxable:g,net:g-cnps-p.total,rows:p.rows,deds:[['Employee CNPS retirement',cnps],['ITS',p.total]]};
+ }
+ function calcZA(g){
+   const c='R ',annual=g*12;
+   const p=progressive(annual,[{label:'R0–245,100',start:0,end:245100,rate:.18},{label:'R245,101–383,100',start:245100,end:383100,rate:.26},{label:'R383,101–530,200',start:383100,end:530200,rate:.31},{label:'R530,201–695,800',start:530200,end:695800,rate:.36},{label:'R695,801–887,000',start:695800,end:887000,rate:.39},{label:'R887,001–1,878,600',start:887000,end:1878600,rate:.41},{label:'Above R1,878,600',start:1878600,end:Infinity,rate:.45}],c);
+   const rebate=17820, mt=Math.max(0,(p.total-rebate)/12),uif=Math.min(g,17712)*.01;
+   const rows=p.rows+'<div class="brow"><div>Primary rebate</div><div class="r">—</div><div class="r">—</div><div class="r">−'+money(rebate,c)+'</div></div>';
+   return {tax:mt,other:uif,taxable:g,net:g-mt-uif,rows,deds:[['UIF employee',uif],['PAYE after primary rebate',mt]]};
+ }
+ function calcKE(g){
+   const c='KSh ',nssf=Math.min(g,108000)*.06,shif=g>0?Math.max(300,g*.0275):0,ahl=g*.015,charge=Math.max(0,g-nssf-shif-ahl);
+   const p=progressive(charge,[{label:'First 24,000',start:0,end:24000,rate:.10},{label:'Next 8,333',start:24000,end:32333,rate:.25},{label:'Next 467,667',start:32333,end:500000,rate:.30},{label:'Next 300,000',start:500000,end:800000,rate:.325},{label:'Above 800,000',start:800000,end:Infinity,rate:.35}],c);
+   const paye=Math.max(0,p.total-2400),rows=p.rows+'<div class="brow"><div>Personal relief</div><div class="r">—</div><div class="r">—</div><div class="r">−'+money(2400,c)+'</div></div>';
+   return {tax:paye,other:nssf+shif+ahl,taxable:charge,net:g-nssf-shif-ahl-paye,rows,deds:[['NSSF employee',nssf],['SHIF',shif],['Affordable Housing Levy',ahl],['PAYE after personal relief',paye]]};
+ }
+ function calcCountry(code,g){
+   return code==='gh'?calcGH(g):code==='ng'?calcNG(g):code==='ci'?calcCI(g):code==='za'?calcZA(g):calcKE(g);
+ }
+ function currentFx(code){const input=document.querySelector('[data-fx="'+code+'"]');return input?num(input.value):cfg[code].fx}
+ function renderCompare(){
+   const grossUSD=num(q('#usdGross').value);
+   const data=Object.keys(cfg).map(code=>{
+     const fx=currentFx(code),gross=grossUSD*fx,r=calcCountry(code,gross);
+     return {code,name:cfg[code].name,currency:cfg[code].currency,flag:cfg[code].flag,fx,gross,...r,netUSD:r.net/fx,ret:gross?100*r.net/gross:0};
+   }).sort((a,b)=>b.ret-a.ret);
+   q('#compareRows').innerHTML=data.map((x,i)=>'<tr class="'+(i===0?'best':'')+'"><td><span class="rank">'+(i+1)+'</span></td><td><div class="country-cell"><img class="flag big" src="'+x.flag+'" alt="'+x.name+' flag"><span class="country">'+x.name+'</span></div></td><td><span class="local">'+money(x.gross,x.currency)+'</span></td><td>'+money(x.tax,x.currency)+'</td><td>'+money(x.other,x.currency)+'</td><td class="usd">'+usd(x.netUSD)+'</td><td class="barcell"><span class="retention">'+x.ret.toFixed(1)+'%</span><div class="bar"><div class="fill" style="width:'+Math.max(0,Math.min(100,x.ret))+'%"></div></div></td></tr>').join('');
+   if(data.length){
+     const b=data[0];
+     q('#bestCountry').innerHTML='<span class="country-cell"><img class="flag big" src="'+b.flag+'" alt="'+b.name+' flag"><span>'+b.name+' — '+b.ret.toFixed(1)+'%</span></span>';
+     q('#bestDetail').textContent='At '+usd(grossUSD)+' gross per month, this baseline model leaves about '+usd(b.netUSD)+' net. This is a payroll-tax comparison, not a cost-of-living ranking.';
    }
-   try{
-     await navigator.clipboard.writeText(url);
-     status.textContent='Share link copied.';
-   }catch(e){
-     status.textContent='Copy the page address from your browser to share it.';
-   }
+   try{const u=new URL(location.href);u.searchParams.set('usd',String(grossUSD));history.replaceState(null,'',u)}catch(e){}
+ }
+ function formatTextInput(el){
+   let raw=el.value.replace(/,/g,'').replace(/[^0-9.]/g,'');
+   const p=raw.indexOf('.');
+   if(p>=0)raw=raw.slice(0,p+1)+raw.slice(p+1).replace(/\./g,'');
+   const parts=raw.split('.');
+   let i=(parts[0]||'0').replace(/^0+(?=\d)/,'');
+   i=i.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+   el.value=i+(parts.length>1?'.'+parts[1].slice(0,2):'');
+ }
+ q('#usdGross').addEventListener('input',e=>{formatTextInput(e.target);renderCompare()});
+ qa('[data-fx]').forEach(el=>el.addEventListener('input',renderCompare));
+ q('#shareCompare').addEventListener('click',async()=>{
+   let url=location.href;
+   const text='Africa Salary Comparator — '+q('#usdGross').value+' USD gross benchmark';
+   if(navigator.share){try{await navigator.share({title:'Africa Salary Comparator',text,url});return}catch(e){if(e.name==='AbortError')return}}
+   try{await navigator.clipboard.writeText(url)}catch(e){}
  });
 
- // Load salary from a shared URL such as ?salary=10000
- try{
-   const params=new URLSearchParams(window.location.search);
-   const shared=params.get('salary');
-   if(shared && Number(shared)>0) input.value=shortCash(Number(shared));
- }catch(e){}
- calculate();
+ const country=q('#country'),salary=q('#salary'),prefix=q('#prefix'),extra=q('#extra');
+ function setSingle(reset=true){
+   const c=cfg[country.value];
+   prefix.textContent=c.currency;
+   extra.textContent=c.source;
+   q('#selectedFlag').src=c.flag;
+   q('#selectedFlag').alt=c.name+' flag';
+   q('#selectedName').textContent=c.name;
+   if(reset) salary.value=comma(c.defaultSalary);
+   renderSingle();
+ }
+ function renderSingle(){
+   const code=country.value,c=cfg[code],g=num(salary.value),r=calcCountry(code,g),fx=currentFx(code);
+   q('#net').textContent=money(Math.max(0,r.net),c.currency);
+   q('#tax').textContent=money(r.tax,c.currency);
+   q('#stat').textContent=money(r.other,c.currency);
+   q('#netUsd').textContent=usd(fx?r.net/fx:0);
+   q('#netSub').textContent='Retention: '+(g?100*r.net/g:0).toFixed(1)+'% of gross';
+   q('#deductions').innerHTML=r.deds.map(x=>'<div class="dedrow"><span>'+x[0]+'</span><strong>'+money(x[1],c.currency)+'</strong></div>').join('')+'<div class="dedrow total"><span>Total employee deductions</span><strong>'+money(r.tax+r.other,c.currency)+'</strong></div>';
+   q('#taxRows').innerHTML=r.rows;
+   q('#source').innerHTML='<strong>'+c.name+':</strong> '+c.source;
+ }
+ salary.addEventListener('input',e=>{formatTextInput(e.target);renderSingle()});
+ country.addEventListener('change',()=>setSingle(true));
+ q('#toggle').addEventListener('click',()=>{const d=q('#details'),open=d.classList.toggle('open');q('#toggle').textContent=open?'Hide full breakdown':'Show full breakdown'});
+ qa('.tab').forEach(t=>t.addEventListener('click',()=>{qa('.tab').forEach(x=>x.classList.remove('active'));qa('.panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');q('#'+t.dataset.tab).classList.add('active')}));
+ try{const p=new URLSearchParams(location.search),u=p.get('usd');if(u&&Number(u)>0)q('#usdGross').value=comma(Number(u))}catch(e){}
+ renderCompare();setSingle(false);
 })();
 </script>
 </body>
